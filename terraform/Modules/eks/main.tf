@@ -5,12 +5,11 @@ resource "aws_eks_cluster" "main" {
   enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 
   vpc_config {
-    subnet_ids = var.subnet_ids
-
+    subnet_ids             = var.subnet_ids
     endpoint_public_access = true
-    public_access_cidrs    = ["203.0.113.5/32"]
+    
+    public_access_cidrs    = ["0.0.0.0/0"] 
   }
-
   encryption_config {
     resources = ["secrets"]
     provider {
