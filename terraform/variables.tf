@@ -38,9 +38,8 @@ variable "node_group_role_name" {
 }
 
 variable "dbPassword" {
-  type        = string
-  description = "Database password passed from GitHub Actions secrets"
-  sensitive   = true
+  type      = string
+  sensitive = true
 }
 
 variable "jwtSecret" {
