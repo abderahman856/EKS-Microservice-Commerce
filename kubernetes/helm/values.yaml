@@ -2,7 +2,6 @@ global:
   repository: 723580626973.dkr.ecr.us-east-1.amazonaws.com
   tag: latest
   awsRegion: "us-east-1"
-
   secrets:
     authDbPassword: ""
     orderDbPassword: ""
@@ -11,7 +10,6 @@ global:
   database:
     host: "ecommercemain.c6nao6eycmq2.us-east-1.rds.amazonaws.com"
     port: 5432
-  
   sharedEnv:
     LOG_LEVEL: "info"
     AUTH_API_URL: "http://auth-service:8080"
@@ -20,14 +18,14 @@ global:
     ORDER_API_URL: "http://order-service:8083"
     PAYMENT_API_URL: "http://payment-service:8084"
     PRODUCT_API_URL: "http://product-service:8085"
-
+  image:
+    tag: 13eefb55fc5be12f6642dc59b6197954198354ba
 frontend:
   replicaCount: 1
   image:
     repository: "frontend-service"
   service:
     port: 80
-
 auth:
   replicaCount: 1
   image:
@@ -38,7 +36,6 @@ auth:
   secrets:
     dbName: "auth_db" # Unique DB name on shared RDS
     jwtSecret: "a-long-random-32-character-string"
-
 cart:
   replicaCount: 1
   image:
@@ -47,14 +44,12 @@ cart:
     port: 8081
   secrets:
     dbName: "cart_db"
-
 notification:
   replicaCount: 1
   image:
     repository: "notification-service"
   service:
     port: 8082
-
 order:
   replicaCount: 1
   image:
@@ -63,14 +58,12 @@ order:
     port: 8083
   secrets:
     dbName: "order_db"
-
 payment:
   replicaCount: 1
   image:
     repository: "payment-service"
   service:
     port: 8084
-
 product:
   replicaCount: 1
   image:
