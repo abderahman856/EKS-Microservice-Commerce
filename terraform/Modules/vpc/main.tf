@@ -30,6 +30,28 @@ resource "aws_nat_gateway" "my-ngw" {
     Name = "my-ngw"
   }
 }
+resource "aws_cloudwatch_log_group" "vpc_log_group" {
+  name              = "/aws/vpc/${var.vpc_name}-flow-logs"
+  retention_in_days = 7
+}
+
+resource "aws_flow_log" "my_vpc_flow_log" {
+  iam_role_arn    = var.flow_log_role_arn
+  log_destination = aws_cloudwatch_log_group.vpc_log_group.arn
+  traffic_type    = "ALL"
+  vpc_id          = aws_vpc.my_vpc.id
+}
+
+resource "aws_default_security_group" "default" {
+  vpc_id = aws_vpc.my_vpc.id
+
+  ingress = []
+  egress  = []
+
+  tags = {
+    Name = "${var.vpc_name}-default-locked"
+  }
+}
 
 resource "aws_route_table" "public_rt" {
   vpc_id = aws_vpc.my_vpc.id

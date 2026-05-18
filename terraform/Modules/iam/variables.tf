@@ -7,3 +7,8 @@ variable "node_group_role_name" {
   description = "The name of the IAM role for the EKS node group"
   type        = string
 }
+
+variable "project_name" {
+  description = "The name of the project"
+  default     = "ecommerce-app"
+}

@@ -1,3 +1,7 @@
+variable "project_name" {
+  description = "The name of the project"
+  default     = "ecommerce-app"
+}
 variable "vpc_name" {
   type    = string
   default = "my-vpc"

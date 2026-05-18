@@ -3,13 +3,15 @@ module "vpc" {
 
   vpc_name              = var.vpc_name
   vpc_cidr              = var.vpc_cidr
-  public_subnets_cidrs  = var.public_subnets_cidrs  # Matches left and right exactly
-  private_subnets_cidrs = var.private_subnets_cidrs # Matches left and right exactly
-  availability_zones    = var.availability_zones    # Matches left and right exactly
+  public_subnets_cidrs  = var.public_subnets_cidrs
+  private_subnets_cidrs = var.private_subnets_cidrs
+  availability_zones    = var.availability_zones
+  flow_log_role_arn = module.iam.vpc_flow_log_role_arn
 }
 
 module "iam" {
-  source = "./Modules/iam"
+  source       = "./Modules/iam"
+  project_name = var.project_name
 
   eks_cluster_role_name = var.eks_cluster_role_name
   node_group_role_name  = var.node_group_role_name
