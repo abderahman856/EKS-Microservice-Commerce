@@ -3,6 +3,12 @@ name: Build, push, scan, and update-gitOps
 on:
   push:
     branches: [ main ]
+<<<<<<< Updated upstream
+=======
+    # paths:
+    #   - 'services/**' 
+    #   - 'kubernetes/helm/**'
+>>>>>>> Stashed changes
 
 jobs:
   Build-bush-and-scan:
