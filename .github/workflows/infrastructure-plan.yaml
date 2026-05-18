@@ -68,9 +68,7 @@ jobs:
           echo "=========================================================="
           echo " GENERATING INFRASTRUCTURE PLAN"
           echo "=========================================================="
-          terraform plan -no-color -input=false \
-            -var="jwtSecret=${{ env.JWT_SECRET_SECRET }}" \
-            -out=tfplan
+          terraform plan -no-color -input=false -out=tfplan
 
       - name: Job Summary
         run: |
