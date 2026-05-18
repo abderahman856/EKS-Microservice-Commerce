@@ -1,14 +1,14 @@
 name: Infrastructure Plan
 
 on:
-  pull_request:
+  push:
     branches: [ main ]
     paths: [ 'terraform/**']
 
 jobs:
   tf-plan:
     name: "Terraform Security and Plan"
-    runs-on: ubuntu-latest # mk
+    runs-on: ubuntu-latest 
 
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

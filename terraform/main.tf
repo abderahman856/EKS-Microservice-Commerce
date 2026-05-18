@@ -14,7 +14,7 @@ module "iam" {
   project_name = var.project_name
 
   eks_cluster_role_name = var.eks_cluster_role_name
-  node_group_role_name  = var.node_group_role_name
+  node_group_role_name  = var.node_group_role_name ########
 }
 
 module "rds" {
