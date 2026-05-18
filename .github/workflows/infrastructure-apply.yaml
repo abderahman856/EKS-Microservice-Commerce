@@ -20,6 +20,8 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: "us-east-1"
+      TF_VAR_dbPassword: ${{ secrets.DB_PASSWORD }}
+      TF_VAR_jwtSecret:  ${{ secrets.JWT_SECRET }}
 
     steps:
       - name: Checkout Code
@@ -47,9 +49,10 @@ jobs:
         working-directory: ./${{ github.event.inputs.working_dir || 'terraform' }}
         run: |
           echo "=========================================================="
-          echo "STARTING INFRASTRUCTURE DEPLOYMENT IN: ${{ github.event.inputs.working_dir || 'terraform' }}"
+          echo " STARTING INFRASTRUCTURE DEPLOYMENT IN: terraform"
           echo "=========================================================="
-          terraform apply -auto-approve -no-color
+          terraform apply -no-color -input=false -auto-approve
+          
         continue-on-error: false 
       - name: Job Summary
         if: always()
