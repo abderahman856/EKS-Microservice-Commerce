@@ -58,6 +58,11 @@ The project focuses on modern DevOps and platform engineering practices includin
 * Prometheus
 * Grafana
 
+## Docs
+
+### App-with custom domain ( baashe.uk )
+
+
 ## Infrastructure Summary
 
 The infrastructure is provisioned using Terraform and follows a modular structure.
