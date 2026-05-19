@@ -2,12 +2,23 @@ grafana:
   enabled: true
   adminPassword: "admin" 
   
+  readinessProbe:
+    initialDelaySeconds: 60
+    timeoutSeconds: 10
+    periodSeconds: 10
+    failureThreshold: 5
+  livenessProbe:
+    initialDelaySeconds: 90
+    timeoutSeconds: 10
+    periodSeconds: 10
+    failureThreshold: 10
+
   resources:
     requests:
-      memory: "100Mi"
+      memory: "250Mi"
       cpu: "100m"
     limits:
-      memory: "200Mi"
+      memory: "500Mi"
       cpu: "200m"
 
   ingress:
@@ -42,7 +53,7 @@ prometheus:
           - prometheus.baashe.uk
 
   prometheusSpec:
-    retention: 1d # Lowered retention for memory savings
+    retention: 1d 
     resources:
       requests:
         memory: "300Mi"
